@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        id="menu_temple_root"
+        name="temple"
+        sequence="10" />
+
+    <menuitem
+        id="menu_temple_name"
+        name="temple_name"
+        parent="menu_temple_root"
+        sequence="10" />
+
+    
+</odoo>

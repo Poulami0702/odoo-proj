@@ -1,0 +1,8 @@
+odooenv
+odoo/addons
+odoo/debian
+odoo/doc
+odoo/.github
+odoo/odoo
+odoo/setup
+odoo/.gitignore

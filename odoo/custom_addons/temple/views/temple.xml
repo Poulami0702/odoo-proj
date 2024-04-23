@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_temple_form" model="ir.ui.view">
+        <field name="name">temple.form</field>
+        <field name="model">temple.temple</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"></field>
+                        <field name="temple_name"></field>
+                        <field name="age"></field>
+                        <field name="gender"></field>
+                        <field name="is_child"></field>
+                    </group>
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_temple_tree" model="ir.ui.view">
+        <field name="name">temple.tree</field>
+        <field name="model">temple.temple</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"></field>
+                <field name="age"></field>
+                <field name="gender"></field>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_temple" model="ir.actions.act_window">
+        <field name="name">temple</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">temple.temple</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_temple_new"
+        name="temple_new"
+        parent="menu_temple_name"
+        action="action_temple"
+        sequence="10" />
+</odoo>

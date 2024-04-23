@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- this is for form view -->
+    <record id="view_school_student_form" model="ir.ui.view">
+        <field name="name">school.student.form</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="ref" readonly="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"></field>
+                            <field name="age"></field>
+                            <field name="gender"></field>
+                            <field name="notes" widget="html"></field>
+                            <field name="school_id" options="{'no_open':True,'no_create':True}" />    <!--by
+                            using this option value. the side arrow will be remove. as well as no new
+                            records create options will be there -->
+                            <field name="is_child"></field>
+                            <field name="capitalized_name"></field>
+                            <field name="tag_id" widget="many2many_tags" />
+                            <field name="state_ids" widget="many2many_tags" />
+                            <field name="country_id" widget="many2onebutton" />
+                            <field name="country_code" />
+                            <field name="staff_line_ids" editable="top" />
+                        </group>
+                        <group>
+                            <field name="establish_date"></field>
+                            <field name="open_date"></field>
+                            <field name="documents" filename="document_name"></field>
+                            <field name="document_name" invisible="1"></field>
+                        </group>
+                    </group>
+
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- this is for search view  -->
+    <record id="view_school_student_search" model="ir.ui.view">
+        <field name="name">school.student.search</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" filter_domain="['|',('name','ilike',self),('ref','ilike',self)]"></field>
+                <field name="age"></field>
+                <field name="gender"></field>
+                <filter name="filter_male" string="Male" domain="[('gender', '=', 'male')]" />
+                <filter name="filter_female" string="Female" domain="[('gender', '=', 'female')]" />
+                <filter name="filter_other" string="Others" domain="[('gender', '=', 'others')]" />
+                <separator />
+                <filter name="filter_is_chile" string="Is_child"
+                    domain="[('is_child', '=', 'true')]" />
+                <group expand="0" string="Group by ....">
+                    <filter name="Gender" string="group_by_Gender" context="{'group_by': 'gender'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- thisis for tree view  -->
+    <record id="view_school_student_tree" model="ir.ui.view">
+        <field name="name">school.student.tree</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref" />
+                <field name="name"></field>
+                <field name="age"></field>
+                <field name="gender"></field>
+                <field name="capitalized_name"></field>
+                <field name="tag_id" widget="many2many_tags" />
+                <field name="state_ids" widget="many2many_tags" />
+                <field name="country_id" widget="many2onebutton" />
+                <field name="staff_line_ids" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- this is for actions -->
+    <record id="action_school_student" model="ir.actions.act_window">
+        <field name="name">student</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">school.student</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_school_teacher"
+        name="school_teacher"
+        parent="menu_school_name"
+        action="action_school_student"
+        sequence="10" />
+</odoo>

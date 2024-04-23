@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- this is for form view -->
+    <record id="view_school_class_form" model="ir.ui.view">
+        <field name="name">school.class.form</field>
+        <field name="model">school.class</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger"
+                        invisible="active" />
+                    <group>
+                        <field name="name"></field>
+                        <field name="ref"></field>
+                        <field name="school_description"></field>
+                        <field name="school_image" widget="image"></field>
+                        <field name="active" invisible="1" />
+                    </group>
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- thisis for tree view  -->
+    <record id="view_school_class_tree" model="ir.ui.view">
+        <field name="name">school.class.tree</field>
+        <field name="model">school.class</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref" />
+                <field name="name"></field>
+            </tree>
+        </field>
+    </record>
+
+    <!-- this is for search view  -->
+    <record id="view_school_class_search" model="ir.ui.view">
+        <field name="name">school.class.search</field>
+        <field name="model">school.class</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"></field>
+                <field name="ref" />
+                <separator />
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]" />
+            </search>
+        </field>
+    </record>
+
+    <!-- this is for actions -->
+    <record id="action_school_class" model="ir.actions.act_window">
+        <field name="name">school</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">school.class</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_school_class_ch"
+        name="school_class_ch"
+        parent="menu_school_class"
+        action="action_school_class"
+        sequence="10" />
+</odoo> 
