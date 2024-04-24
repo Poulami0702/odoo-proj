@@ -28,6 +28,7 @@ This is the Real estate ads. to show available properties
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'security/res_groups.xml',
         'data/estate.property.type.csv',
         'views/property_views.xml',
         'views/property_type_views.xml',
