@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <template t-name="real_estate_ads.CustomActions">
+        <div>
+            <h3>
+                Custom Action
+            </h3>
+        </div>
+    </template>
+</odoo>

@@ -1,4 +1,4 @@
-from odoo import fields, models ,api
+from odoo import fields, models ,api,_
 
 class Property(models.Model):
     _name = "estate.property"
@@ -61,6 +61,17 @@ class Property(models.Model):
             'view_mode': 'tree',
             'res_model': 'estate.property.offers',
         }
+    
+    # def action_property_testing_client_actions(self):
+    #     return {
+    #         'type': 'ir.actions.client',
+    #         # 'tag':'reload',
+    #         'tag': 'display_notification',
+    #         'params':{
+    #             'title':_('Testing_client'),
+    #             'type':'danger', #success, danger ,warning
+    #         }
+    #     }
     
     @api.depends('offer_ids')
     def _compute_offer_count(self):

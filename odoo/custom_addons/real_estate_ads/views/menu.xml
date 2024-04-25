@@ -29,6 +29,10 @@
                 action="real_estate_ads.action_property_tag" />
             <menuitem id="menu_property_offers" name="Property Offers"
                 action="real_estate_ads.action_property_offers" />
+
+            <menuitem id="menu_test_client_property" name="Test Client Action"
+                action="real_estate_ads.action_custom_client_property"
+            />
         </menuitem>
     </menuitem>
 

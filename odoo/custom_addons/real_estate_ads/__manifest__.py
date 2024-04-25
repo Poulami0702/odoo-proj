@@ -44,5 +44,12 @@ This is the Real estate ads. to show available properties
     'demo': [
         'demo/property_tag.xml',
     ],
+
+    'assets': {
+        'web.assets_backend': [
+            'real_estate_ads/static/src/js/my_custom_tsg.js',
+            'real_estate_ads/static/src/xml/my_custom_tag.xml',
+        ]
+    },
 }
 
