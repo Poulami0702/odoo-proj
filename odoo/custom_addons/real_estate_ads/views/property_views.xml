@@ -148,6 +148,12 @@
                             <field name="offer_count" string="offers" widget="statinfo"></field>
                         </button>
 
+                        <button class="oe_stat_button" name="action_url_action"
+                            type="object" icon="fa-handshake-o">
+                            <field name="offer_count" string="url" widget="statinfo"></field>
+                        </button>
+
+
                         <!-- <button class="oe_stat_button"
                         name="action_property_testing_client_actions"
                             type="object" icon="fa-handshake-o">
@@ -214,6 +220,12 @@
                     </notebook>
 
                 </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
             </form>
         </field>
     </record>
@@ -256,10 +268,38 @@
 
 
     <!-- clent actions property -->
-
+    <!-- client actions wont work for me as of now  -->
     <record id="action_custom_client_property" model="ir.actions.client">
         <field name="name">Custom Client Action</field>
         <field name="tag">custom_client_action</field>
+    </record>
+
+
+    <!-- Server actions -->
+
+    <record id="action_extend_offer_deadline" model="ir.actions.server">
+        <field name="name">Extend Deadline Property</field>
+        <field name="model_id" ref="real_estate_ads.model_estate_property_offers"></field>
+        <field name="state">code</field>
+        <field name="binding_model_id" ref="real_estate_ads.model_estate_property_offers"></field>
+        <field name="binding_view_types">list,form</field>
+        <field name="code">
+            action = model.extend_offer_deadline()
+        </field>
+    </record>
+
+    <!-- Scheduled actions or cron jobs -->
+
+    <record id="ir_cron_extend_offer_deadline" model="ir.cron">
+        <field name="name">Offers: Extend Deadline Everyday</field>
+        <field name="model_id" ref="real_estate_ads.model_estate_property_offers"></field>
+        <field name="state">code</field>
+        <field name="code">
+            action = model._extend_offer_deadline()
+        </field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">1</field>
     </record>
 
 

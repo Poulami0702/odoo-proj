@@ -23,7 +23,7 @@ This is the Real estate ads. to show available properties
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base','mail'],
 
     # always loaded
     'data': [
@@ -35,6 +35,9 @@ This is the Real estate ads. to show available properties
         'views/property_tags_views.xml',
         'views/property_offers_views.xml',
         'views/menu.xml',
+        #reports
+        'reports/property_report.xml',
+        'reports/report_template.xml'
         # 'data/property_type_data.xml',
         
         
@@ -45,11 +48,11 @@ This is the Real estate ads. to show available properties
         'demo/property_tag.xml',
     ],
 
-    'assets': {
-        'web.assets_backend': [
-            'real_estate_ads/static/src/js/my_custom_tsg.js',
-            'real_estate_ads/static/src/xml/my_custom_tag.xml',
-        ]
-    },
+    # 'assets': {
+    #     'web.assets_backend': [
+    #         'real_estate_ads/static/src/js/my_custom_tsg.js',
+    #         'real_estate_ads/static/src/xml/my_custom_tag.xml',
+    #     ]
+    # },
 }
 

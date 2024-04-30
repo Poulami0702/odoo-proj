@@ -2,6 +2,7 @@ from odoo import fields, models ,api,_
 
 class Property(models.Model):
     _name = "estate.property"
+    _inherit=['mail.thread','mail.activity.mixin','mail.alias.mixin']
     _description = "This is the estate property"
 
     name=fields.Char(string="Name", required=True)
@@ -16,7 +17,7 @@ class Property(models.Model):
     description=fields.Text(string="Description")
     postcode=fields.Char(string="Postcode")
     date_availability=fields.Date(string="Date Availability")
-    expected_price=fields.Float(string="Expected Price")
+    expected_price=fields.Float(string="Expected Price", tracking=True)
     best_offer=fields.Float(string="Best Offer", compute='_compute_best_price')
     selling_price=fields.Float(string="Selling Price", readonly=True)
     bedrooms=fields.Integer(string="Bedrooms")
@@ -61,6 +62,18 @@ class Property(models.Model):
             'view_mode': 'tree',
             'res_model': 'estate.property.offers',
         }
+    
+    def action_url_action(self):
+        return {
+            'type': 'ir.actions.act_url',
+            'url': "https://www.odoo.com/documentation/17.0/developer/tutorials/server_framework_101/13_other_module.html",
+            'taregt': 'self',
+           
+        }
+    
+    def _get_report_base_filename(self):
+        self.ensure_one()
+        return 'Estate Property - %s' %self.name
     
     # def action_property_testing_client_actions(self):
     #     return {

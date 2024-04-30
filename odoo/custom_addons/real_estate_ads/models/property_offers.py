@@ -87,14 +87,16 @@ class PropertyOffers(models.Model):
                 'state': 'received'
             })
 
-    def extend_offer_deadline(self):
-        activ_ids = self._context.get('active_ids', [])
-        if activ_ids:
-            offer_ids = self.env['estate.property.offers'].browse(activ_ids)
-            for offer in offer_ids:
-                offer.validity = 10
-
     def _extend_offer_deadline(self):
         offer_ids = self.env['estate.property.offers'].search([])
         for offer in offer_ids:
             offer.validity = offer.validity + 1
+
+    
+    def extend_offer_deadline(self):
+        active_ids=self._context.get('active_ids',[])
+        print("******************", active_ids)
+        if active_ids:
+            offer_ids=self.env['estate.property.offers'].browse(active_ids)
+            for offer in offer_ids:
+                offer.validity=10
